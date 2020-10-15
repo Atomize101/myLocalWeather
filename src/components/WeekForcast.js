@@ -1,5 +1,5 @@
 import React from 'react';
-import apiConfig from '../../apiKey'
+import apiConfig from '../apiKey'
 
 class WeekForcast extends React.Component {
   render() {

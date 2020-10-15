@@ -18,9 +18,8 @@
 .env.test.local
 .env.production.local
 
-/src/components/apiKey.*
+apiKey.*
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-

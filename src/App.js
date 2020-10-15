@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import WeekForcast from './components/WeekForcast';
 
-export default () => {
+class App extends Component {
+  render() {
     return (
-        <h1>myLocalWeather</h1>
-    )
+      <div className="App">
+        <WeekForcast />
+      </div>
+    );
+  }
 }
+
+export default App;

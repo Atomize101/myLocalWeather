@@ -13,6 +13,8 @@ function App() {
       const apiData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}=&APPID=${apiConfig.openWeatherKey}`)
         .then( res => res.json())
         .then(data => data)
+
+        if(city && country) {
         setWeather({
           data: apiData,
           city: apiData.city,
@@ -21,7 +23,18 @@ function App() {
           temperature: apiData.main.temp,
           error: ''
         }
-        )
+      )}
+      else {
+        setWeather({
+          data: '',
+          city: '',
+          country: '',
+          description: '',
+          temperature: '',
+          error: 'Please enter a city and country'
+        });
+      }
+        
     }
   
     return (

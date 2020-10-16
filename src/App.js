@@ -7,12 +7,19 @@ function App() {
     const [weather,setWeather] = useState([])
   
     async function fetchData(e) {
-        e.preventDefault()
-      const apiData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${apiConfig.openWeatherKey}`)
+      const city = e.target.elements.city.value;
+      const country = e.target.elements.country.value;  
+      e.preventDefault()
+      const apiData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}=&APPID=${apiConfig.openWeatherKey}`)
         .then( res => res.json())
         .then(data => data)
         setWeather({
-          data: apiData
+          data: apiData,
+          city: apiData.city,
+          country: apiData.sys.country,
+          description: apiData.weather[0].description,
+          temperature: apiData.main.temp,
+          error: ''
         }
         )
     }
@@ -21,6 +28,13 @@ function App() {
       <div className="App">
         <h3>WEATHER APP</h3>
         <Form getWeather={fetchData} />
+        <Weather 
+        city={weather.city} 
+        country={weather.country}
+        description={weather.description}
+        temperature={weather.temperature}
+        error={weather.error}
+        />
         {console.log(weather.data)}
       </div>
     );
